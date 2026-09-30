@@ -1,20 +1,22 @@
 # WEAR
 
-WEAR adalah personal project virtual try-on melalui kamera secara real time. Fokus pertama adalah menampilkan topi 3D yang mengikuti kepala, dengan target visual realistis dan bentuk produk yang tetap akurat.
+WEAR is a personal project for real-time, camera-based virtual try-on. Its first goal is a 3D hat that follows the user's head, with realistic visuals and faithful product geometry.
 
-Pengembangan berikutnya membuka kemungkinan varian topi, topeng, kalung, dan pakaian yang terlihat hanya sampai bagian atas dada.
+Future development leaves room for hat variants, masks, necklaces, and clothing visible only above the chest.
 
-## Pendekatan
+## Approach
 
-Pemrosesan kamera direncanakan berjalan lokal di browser, memakai computer vision pretrained dan rendering 3D. Stack awal adalah TypeScript, Vite, Three.js, dan MediaPipe. Tidak memerlukan API berbayar atau backend pada tahap awal.
+Camera processing is planned to run locally in the browser, using pretrained computer vision and 3D rendering. The initial stack is TypeScript, Vite, Three.js, and MediaPipe. The first stage requires no paid API or application backend.
 
-WEAR menyediakan preview penampilan. Ukuran visual tidak membuktikan ukuran fisik atau menjamin produk akan pas.
+WEAR provides a visual preview. Visual sizing does not establish physical measurements or guarantee that a product will fit.
 
 ## Status
 
-Fondasi project dan dokumentasi sudah tersedia. Kamera, tracking, model inference, aset topi 3D, dan renderer try-on belum diimplementasikan. Project belum dinyatakan siap untuk marketplace.
+The project foundation and documentation are available. Camera access, tracking, inference model assets, the 3D hat asset, and the try-on renderer are not implemented yet. The project is not declared marketplace-ready.
 
-## Branch
+## Branches
 
-- `main` hanya memuat overview ini.
-- [`production`](https://github.com/LecyLecy/WEAR/tree/production) memuat source code, dokumentasi teknis, dan petunjuk menjalankan project. Nama branch tidak berarti aplikasi sudah dideploy.
+- `main` contains only this project overview.
+- [`production`](https://github.com/LecyLecy/WEAR/tree/production) contains source code, technical documentation, and local setup instructions. The branch name does not mean the application is deployed.
+
+Software and repository content are maintained in English.
