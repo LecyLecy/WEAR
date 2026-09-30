@@ -1,0 +1,19 @@
+:root {
+  font-family: system-ui, sans-serif;
+  color: #17232e;
+  background: #f3f5f1;
+  font-synthesis: none;
+  line-height: 1.6;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { max-width: 860px; margin: 0 auto; padding: 64px 24px; }
+h1 { font-size: clamp(3rem, 10vw, 6rem); letter-spacing: -0.06em; line-height: 1; margin: 0; }
+.intro { font-size: 1.4rem; }
+.status { padding: 16px; border-left: 4px solid #386a51; background: #e4eee7; }
+section { margin-top: 36px; }
+article { border: 1px solid #cbd5cd; border-radius: 12px; padding: 24px; background: white; }
+h3 { margin-top: 0; }
+button { border: 0; border-radius: 6px; padding: 12px 18px; font: inherit; }
+button:disabled { color: #454f49; background: #e6e9e6; cursor: not-allowed; }
+.future { color: #4d5d53; margin-top: 32px; }
