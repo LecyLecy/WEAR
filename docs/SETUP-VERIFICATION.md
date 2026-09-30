@@ -26,6 +26,19 @@ Verified locally: 2026-10-01. This record covers the requested foundation, not v
 
 ## Deliberate remaining feature work
 
-Camera lifecycle, tracking inference, model/WASM assets, GLB topi, rendering, calibration, occlusion, performance measurement, and realism evaluation remain unimplemented. They are upcoming product milestones, not part of the scaffold completion claim. External candidate skills were researched but not installed.
+Camera lifecycle, tracking inference, model/WASM assets, hat GLB, rendering, calibration, occlusion, performance measurement, and realism evaluation remain unimplemented. They are upcoming product milestones, not part of the scaffold completion claim. External candidate skills were researched but not installed.
 
 The reference-device quality targets are unmeasured. No claim of marketplace readiness, fit accuracy, or real-time tracking success is made.
+
+## English content verification
+
+On 2026-10-01, software UI, product catalog text, HTML language/description metadata, and repository documentation were translated into English. Technical scope, data identifiers, feature status, quality targets, and requested filenames were preserved.
+
+- `npm run check`: passed after translation.
+- Browser smoke check: English headings, descriptions, status messages, and disabled button rendered; document language is `en`.
+- Browser errors: none reported; console contained Vite connection debug messages only. No error overlay or remote-origin runtime requests.
+- Screenshot: work/english-scaffold.png, visually inspected and ignored by Git.
+- Repository-text scan: no remaining common Indonesian words found in project source/documentation outside ignored temporary files.
+- AGENTS.md now requires English project content for future changes. The main/production branch split is unchanged.
+
+This language-only change does not implement camera access, inference, rendering, or realistic try-on.

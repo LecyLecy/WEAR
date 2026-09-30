@@ -4,56 +4,56 @@ Status: protocol for future features; scaffold checks are separate. Updated: 202
 
 ## Scaffold acceptance
 
-1. `npm ci` berhasil memakai lockfile.
-2. `npm run check` berhasil: dokumen wajib ada, Markdown tanpa em dash, strict typecheck dan production build sukses.
-3. Browser menampilkan WEAR, status scaffold, satu produk draft, dan tombol disabled. Tidak ada camera permission request atau runtime console error.
-4. Network runtime scaffold hanya memuat local app assets; tidak ada upload video atau model CDN.
+1. `npm ci` succeeds using the lockfile.
+2. `npm run check` succeeds: required documents exist, Markdown has no em dashes, strict typecheck and production build pass.
+3. The browser shows WEAR, scaffold status, one draft product, and a disabled button. No camera permission request or runtime console error occurs.
+4. Scaffold runtime loads only local application assets; no video upload or model CDN requests occur.
 
-Tidak satu pun langkah tersebut membuktikan try-on working. Catat camera, inference, model assets, rendering, dan realism sebagai not implemented sampai feature diuji.
+None of these steps proves working try-on. Record camera access, inference, model assets, rendering, and realism as not implemented until the features are tested.
 
 ## Feature verification layers
 
 ### Logic and lifecycle
 
-Uji transform adapter dengan input known pose, translation, rotation, matrix layout, handedness, dan unit conversion. Uji mirror dan crop pada video/canvas berukuran sama serta perubahan aspect ratio. Uji invalid/nonfinite output, stale timestamp, monotonic sequence, dan result setelah session restart.
+Test the transform adapter with known pose, translation, rotation, matrix layout, handedness, and unit conversions. Test mirroring and cropping on equally sized video/canvas layers and changing aspect ratios. Test invalid/nonfinite output, stale timestamps, monotonic sequences, and results arriving after session restart.
 
-Uji start/stop 10 kali, stop saat loading, product switch saat loading, tab hidden/visible, track ended, camera disconnect, dan WebGL context lost. Pastikan tidak ada loop/stream duplicate, result lama, atau resource leak. Mock tidak menggantikan live camera test.
+Test 10 start/stop cycles, stop during loading, product switching during loading, hidden/visible tabs, ended tracks, camera disconnection, and WebGL context loss. Check for duplicate loops/streams, old results, and resource leaks. Mocks do not replace live camera tests.
 
 ### Device record
 
-Untuk setiap evaluasi, catat OS, browser version, CPU/GPU, display DPR, actual camera resolution/FPS, inference delegate, model/WASM version, GLB revision, dan application commit atau source snapshot. Spesifikasi laptop pengguna belum diketahui.
+For every evaluation, record OS, browser version, CPU/GPU, display DPR, actual camera resolution/FPS, inference delegate, model/WASM version, GLB revision, and application commit or source snapshot. The user's laptop specifications are unknown.
 
-Baseline pengukuran awal: Chrome/Edge desktop, 640x480 jika webcam mendukung, cahaya cukup, satu pengguna. Target kategori mobile belum dinyatakan supported.
+Initial measurement baseline: desktop Chrome/Edge, 640x480 if supported by the webcam, sufficient light, and one user. Mobile devices are not declared supported yet.
 
 ### Performance measurement
 
-Warmup 10 detik lalu ukur 60 detik. Laporkan render FPS dan tracking FPS terpisah, median/P95 inference duration, P95 frame age saat inference complete, peak memory jika browser mendukung, dropped frames, serta stall UI.
+Warm up for 10 seconds, then measure for 60 seconds. Report render FPS and tracking FPS separately, median/P95 inference duration, P95 frame age at inference completion, peak memory where supported, dropped frames, and UI stalls.
 
-Target awal: render >=30 FPS dan tracking >=15 FPS; P95 inference-completion frame age <=120 ms. Timestamp memakai time origin yang sama. Jangan menyebut angka frame age sebagai end-to-end camera-to-display latency. Untuk latency total, gunakan rekaman eksternal berkecepatan tinggi atau metode lain yang terdokumentasi.
+Initial targets: render >=30 FPS, tracking >=15 FPS, and P95 inference-completion frame age <=120 ms. Timestamps share one time origin. Do not label frame age as end-to-end camera-to-display latency. Measure total latency using external high-speed footage or another documented method.
 
 ### Stability and placement
 
-Pada kepala diam, rekam 10 detik. Ukur deviasi posisi anchor topi dari median sebagai proporsi lebar wajah. Target P95 <=2%. Evaluasi rotation jitter terpisah; smoothing dapat mengurangi jitter sambil menambah lag.
+With the head still, record 10 seconds. Measure hat-anchor deviation from its median position as a proportion of face width. Target P95 <=2%. Evaluate rotation jitter separately; smoothing can reduce jitter while adding lag.
 
-Uji kepala menjauh/mendekat, yaw, pitch, dan roll secara bertahap. Laporkan angle/condition yang benar-benar lulus dan titik tracking gagal. Jangan menyebut angle yang belum diuji sebagai supported. Uji recover setelah wajah keluar frame.
+Test moving closer/farther and increasing yaw, pitch, and roll gradually. Report angles/conditions that actually pass and where tracking fails. Do not label untested angles as supported. Test recovery after the face leaves the frame.
 
 ### Visual fidelity
 
-Jika topi asli tersedia, ambil footage real dan virtual dengan camera placement, pose, dan cahaya serupa, dengan persetujuan peserta. Landmark-to-hat placement pada footage real bukan label otomatis yang sempurna; anotasi harus ditinjau.
+If a real hat is available, capture real and virtual footage with similar camera placement, pose, and lighting, with participant consent. Landmark-to-hat placement in real footage is not a perfect automatic label; annotations need review.
 
-Review manual menilai shape/silhouette, logo/material/color fidelity, placement, temporal drift, head occlusion, hair/hand ordering, lighting, dan perceived realism. Pakai skala 1 sampai 5 dengan catatan konkret: 1 berarti jelas salah, 3 berarti usable demo dengan artefak terlihat, 5 berarti konsisten meyakinkan dalam kondisi diuji. Laporkan per dimensi, bukan satu skor yang menyembunyikan kegagalan.
+Manual review assesses shape/silhouette, logo/material/color fidelity, placement, temporal drift, head occlusion, hair/hand ordering, lighting, and perceived realism. Use a 1-to-5 scale with concrete notes: 1 means clearly wrong, 3 means a usable demo with visible artifacts, and 5 means consistently convincing under tested conditions. Report each dimension rather than one score that hides failures.
 
-Gate realism awal untuk kondisi supported: setiap dimensi minimal 4 dalam review yang terdokumentasi dan tidak ada clipping/occlusion failure yang merusak preview sepanjang klip yang lulus. Review ini masih subjektif. Sebelum klaim marketplace, perlu evaluasi pengguna yang lebih luas dan threshold yang disetujui pemilik produk.
+Initial realism gate for supported conditions: every dimension scores at least 4 in documented review, with no clipping/occlusion failure that undermines the preview throughout passing clips. This review remains subjective. Marketplace claims require broader user evaluation and thresholds approved by the product owner.
 
 ## Evaluation coverage
 
-Mulai dengan puluhan klip debugging yang mencakup variasi rambut, wajah, warna kulit, kacamata, cahaya, jarak, dan gerakan. Catat jumlah peserta, bukan hanya jumlah frame yang sangat berkorelasi. Laporkan failure rate per kondisi. Sample kecil bukan evidence performa populasi luas.
+Start with dozens of debugging clips covering hair, face shapes, skin tones, glasses, lighting, distance, and motion. Record participant counts, not only highly correlated frame counts. Report failure rates by condition. A small sample does not establish population-wide performance.
 
-Uji kondisi adversarial praktis: existing real hat, tangan di depan brim, kepala terpotong, side profile, dua orang, backlight, rapid motion, dan low-resolution camera. Kegagalan boleh menjadi documented unsupported condition selama UI gagal secara jujur; tidak boleh disembunyikan demi demo.
+Test practical adverse conditions: existing real hats, hands in front of the brim, cropped heads, side profiles, two people, backlighting, rapid movement, and low-resolution cameras. A failure may become a documented unsupported condition if the UI fails honestly; do not hide it to improve a demo.
 
 ## Consent and evidence handling
 
-Tidak ada recording otomatis. Minta persetujuan peserta sebelum mengumpulkan footage. Simpan di lokasi lokal yang disepakati di luar Git, tentukan retensi dan penghapusan, dan jangan menaruh identitas di file report. Application diagnostics hanya angka, bukan frame atau biometric histories.
+There is no automatic recording. Obtain participant consent before collecting footage. Store it in an agreed local location outside Git, define retention/deletion, and exclude identities from reports. Application diagnostics contain numbers only, not frames or biometric histories.
 
 ## Result template
 

@@ -8,17 +8,17 @@ const title = document.createElement('h1');
 title.textContent = 'WEAR';
 const intro = document.createElement('p');
 intro.className = 'intro';
-intro.textContent = 'Coba gaya, langsung di kamera.';
+intro.textContent = 'Try your style, live on camera.';
 
 const status = document.createElement('p');
 status.className = 'status';
-status.textContent = 'Fondasi project tersedia. Kamera dan virtual try-on belum diimplementasikan.';
+status.textContent = 'The project foundation is ready. Camera access and virtual try-on are not implemented yet.';
 
 const panel = document.createElement('section');
 panel.setAttribute('aria-labelledby', 'catalog-title');
 const heading = document.createElement('h2');
 heading.id = 'catalog-title';
-heading.textContent = 'Milestone pertama: topi';
+heading.textContent = 'First milestone: hats';
 panel.append(heading);
 
 for (const hat of hats) {
@@ -30,12 +30,12 @@ for (const hat of hats) {
   const action = document.createElement('button');
   action.type = 'button';
   action.disabled = true;
-  action.textContent = 'Try-on belum tersedia';
+  action.textContent = 'Try-on is not available yet';
   item.append(name, description, action);
   panel.append(item);
 }
 
 const future = document.createElement('p');
 future.className = 'future';
-future.textContent = 'Direncanakan berikutnya: varian topi, topeng, kalung, dan pakaian bagian atas dada.';
+future.textContent = 'Planned next: hat variants, masks, necklaces, and clothing visible above the chest.';
 app.append(title, intro, status, panel, future);

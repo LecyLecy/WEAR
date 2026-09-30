@@ -1,16 +1,16 @@
 # WEAR
 
-WEAR adalah personal project virtual try-on yang memproses kamera secara lokal. Milestone pertama adalah satu topi 3D yang mengikuti kepala. Pengembangan berikutnya membuka kemungkinan topeng, kalung, dan pakaian yang terlihat hanya sampai bagian atas dada.
+WEAR is a personal virtual try-on project that processes camera input locally. The first milestone is one 3D hat that follows the user's head. Future development leaves room for masks, necklaces, and clothing visible only above the chest.
 
-## Status saat ini
+## Current status
 
-Scaffold berjalan sebagai aplikasi browser. Katalog berisi satu draft tanpa aset. Kamera, model tracking, renderer 3D, occlusion, dan pengujian realism belum diimplementasikan. Tombol try-on sengaja nonaktif. Tidak ada server aplikasi, akun pengguna, database, atau layanan berbayar.
+The scaffold runs as a browser application. Its catalog contains one draft without an asset. Camera access, model tracking, 3D rendering, occlusion, and realism evaluation are not implemented yet. The try-on button is deliberately disabled. There is no application backend, user account system, database, or paid service.
 
-## Menjalankan
+## Running locally
 
-Source code dan dokumentasi lengkap berada pada branch `production` di [repository WEAR](https://github.com/LecyLecy/WEAR/tree/production). Branch `main` hanya berisi overview project. Nama branch production tidak berarti aplikasi sudah dideploy.
+Source code and full documentation live on the `production` branch of the [WEAR repository](https://github.com/LecyLecy/WEAR/tree/production). The `main` branch contains only the project overview. The production branch name does not mean the application is deployed.
 
-Gunakan Node.js 22.12 atau lebih baru; setup ini diverifikasi dengan Node.js 24.16.0.
+Use Node.js 22.12 or newer; this setup was verified with Node.js 24.16.0.
 
 ```powershell
 Set-Location E:\Projects\WEAR
@@ -18,45 +18,47 @@ npm ci
 npm run dev
 ```
 
-Buka URL localhost yang dicetak Vite. Perintah tersebut hanya menjalankan development server lokal. Untuk pemeriksaan:
+Open the localhost URL printed by Vite. These commands start only a local development server. To verify the scaffold:
 
 ```powershell
 npm run check
 npm run preview
 ```
 
-`preview` membutuhkan hasil `build`. Tidak perlu environment variable atau API key. `npm ci` pertama membutuhkan internet; setelah dependency tersedia, scaffold dapat berjalan lokal. Fitur inference kelak memerlukan model dan WASM lokal yang belum disertakan.
+`preview` requires a completed `build`. No environment variables or API keys are needed. The first `npm ci` needs internet; after dependencies are available, the scaffold can run locally. Future inference requires local model and WASM assets that are not included yet.
 
-## Dokumen
+## Documents
 
-- [PRD.md](PRD.md): tujuan produk, pengguna, scope, kebutuhan, dan acceptance criteria.
-- [ARCHITECTURE.md](ARCHITECTURE.md): sumber utama desain teknis dan data model.
-- [ARCHITECTURE-ESSETIALS.md](ARCHITECTURE-ESSETIALS.md): ringkasan keputusan penting. Ejaan filename mengikuti permintaan awal.
-- [ARCHIRECTURE.md](ARCHIRECTURE.md): pointer untuk ejaan alternatif dari permintaan awal, bukan dokumen teknis kedua.
-- [AGENTS.md](AGENTS.md): aturan kerja dan cara memperbarui dokumen.
-- [docs/RISK-REVIEW.md](docs/RISK-REVIEW.md): hal yang bisa rusak, edge cases, dan keputusan penyederhanaan.
-- [docs/VALIDATION.md](docs/VALIDATION.md): cara membuktikan performa dan kualitas visual.
-- [docs/SKILLS.md](docs/SKILLS.md): skill yang ditemukan, kegunaan, dan status instalasi.
-- [docs/SETUP-VERIFICATION.md](docs/SETUP-VERIFICATION.md): hasil pemeriksaan scaffold dan batas klaim completion.
+- [PRD.md](PRD.md): product goals, users, scope, requirements, and acceptance criteria.
+- [ARCHITECTURE.md](ARCHITECTURE.md): the primary technical design and data models.
+- [ARCHITECTURE-ESSETIALS.md](ARCHITECTURE-ESSETIALS.md): an outline of critical decisions. The filename preserves the spelling requested initially.
+- [ARCHIRECTURE.md](ARCHIRECTURE.md): a pointer for the alternative spelling in the initial request, not a second technical document.
+- [AGENTS.md](AGENTS.md): working rules and document-update guidance.
+- [docs/RISK-REVIEW.md](docs/RISK-REVIEW.md): failure modes, edge cases, and simplification decisions.
+- [docs/VALIDATION.md](docs/VALIDATION.md): how to demonstrate performance and visual quality.
+- [docs/SKILLS.md](docs/SKILLS.md): discovered skills, applicability, and installation status.
+- [docs/SETUP-VERIFICATION.md](docs/SETUP-VERIFICATION.md): scaffold verification results and the limits of completion claims.
 
-## Struktur
+## Structure
 
 ```text
 src/
-  main.ts                  halaman status scaffold
-  styles.css               gaya halaman
-  catalog/hats.ts          draft katalog lokal
-  domain/                  kontrak produk, tracking, dan session
-  features/camera/         batas fitur kamera, belum diimplementasikan
-  features/tracking/       batas fitur inference, belum diimplementasikan
-  features/hat/            batas fitur topi, belum diimplementasikan
-  features/rendering/      batas fitur renderer, belum diimplementasikan
+  main.ts                  scaffold status page
+  styles.css               page styling
+  catalog/hats.ts          local draft catalog
+  domain/                  product, tracking, and session contracts
+  features/camera/         planned camera boundary
+  features/tracking/       planned inference boundary
+  features/hat/            planned hat boundary
+  features/rendering/      planned renderer boundary
 public/
-  assets/hats/             aset produk 3D yang akan dibuat
-  models/                  model inference dan WASM yang akan disiapkan
-docs/                      risiko, validasi, dan katalog skill
-scripts/                   pemeriksaan dokumen
-tests/                     panduan pengujian fitur berikutnya
+  assets/hats/             future 3D product assets
+  models/                  future inference model and WASM assets
+docs/                      risks, validation, and skill catalog
+scripts/                   document checks
+tests/                     future feature-testing guidance
 ```
 
-Milestone selanjutnya: permission kamera dan lifecycle yang benar, lalu satu kepala terdeteksi, lalu topi GLB terkalibrasi. Jangan menganggap milestone selesai hanya karena topi terlihat pada satu frame.
+Next milestones: camera permission and correct lifecycle, then one detected head, then a calibrated hat GLB. Do not call a milestone complete merely because a hat appears in one frame.
+
+Software text and repository documentation use English.

@@ -1,5 +1,5 @@
 # Architecture filename reference
 
-Dokumen teknis utama adalah [ARCHITECTURE.md](ARCHITECTURE.md). File ini mempertahankan filename `ARCHIRECTURE.md` yang disebut dalam permintaan awal, tanpa menduplikasi isi arsitektur.
+The primary technical document is [ARCHITECTURE.md](ARCHITECTURE.md). This file preserves the filename `ARCHIRECTURE.md` mentioned in the initial request without duplicating architectural content.
 
-Ringkasan cepat tersedia di [ARCHITECTURE-ESSETIALS.md](ARCHITECTURE-ESSETIALS.md). Semua perubahan teknis harus masuk ke dokumen utama dan ringkasan bila keputusan penting berubah.
+A quick outline is available in [ARCHITECTURE-ESSETIALS.md](ARCHITECTURE-ESSETIALS.md). Technical changes belong in the primary document and, when critical decisions change, in the outline too.
